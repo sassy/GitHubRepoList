@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="io.github.sassy.githubrepolist.ui.RepoViewModel" />
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+<LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -10,5 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_margin="@dimen/text_margin"
+        android:text = "@{viewModel.repos[position]}"
         android:textAppearance="?attr/textAppearanceListItem" />
 </LinearLayout>
+</layout>

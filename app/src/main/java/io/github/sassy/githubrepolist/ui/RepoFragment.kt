@@ -2,7 +2,6 @@ package io.github.sassy.githubrepolist.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import io.github.sassy.githubrepolist.R
+import io.github.sassy.githubrepolist.databinding.FragmentRepoListBinding
 
 import io.github.sassy.githubrepolist.repository.RepoRepository
 
@@ -22,10 +24,13 @@ import io.github.sassy.githubrepolist.repository.RepoRepository
  */
 class RepoFragment : Fragment() {
 
-    // TODO: Customize parameters
     private var columnCount = 1
 
+    private lateinit var binding: FragmentRepoListBinding
     private val repository = RepoRepository()
+    private val viewModel: RepoViewModel by lazy {
+        ViewModelProvider(this, RepoViewModelFactory(repository)).get(RepoViewModel::class.java)
+    }
     private var listener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +45,10 @@ class RepoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_repo_list, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_repo_list, container, false)
+        binding.lifecycleOwner = this
 
+        val view: View = binding.root
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -49,10 +56,10 @@ class RepoFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyRepoRecyclerViewAdapter(repository.getRepos(), listener)
+                adapter = RepoRecyclerViewAdapter(viewModel, listener)
             }
         }
-        return view
+        return binding.root
     }
 
     override fun onAttach(context: Context) {
