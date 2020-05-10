@@ -8,6 +8,7 @@ class RepoViewModelFactory(
   private val repository: RepoRepository
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        @Suppress("UNCHECKED_CAST")
         return RepoViewModel(repository) as T
     }
 }

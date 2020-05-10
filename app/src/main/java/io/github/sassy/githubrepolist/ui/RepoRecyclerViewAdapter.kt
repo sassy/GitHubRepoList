@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.databinding.FragmentRepoBinding
 
 
 import io.github.sassy.githubrepolist.ui.RepoFragment.OnListFragmentInteractionListener
+import io.github.sassy.githubrepolist.vo.Repo
 
 import kotlinx.android.synthetic.main.fragment_repo.view.*
 
@@ -21,7 +23,8 @@ import kotlinx.android.synthetic.main.fragment_repo.view.*
  */
 class RepoRecyclerViewAdapter(
     private val viewModel: RepoViewModel,
-    private val mListener: OnListFragmentInteractionListener?
+    private val mListener: OnListFragmentInteractionListener?,
+    private val parentLifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<RepoRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
@@ -44,6 +47,7 @@ class RepoRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.viewModel = viewModel
         holder.binding.position = position
+        holder.binding.lifecycleOwner = parentLifecycleOwner
 
         val view = holder.binding.root
         with(view) {

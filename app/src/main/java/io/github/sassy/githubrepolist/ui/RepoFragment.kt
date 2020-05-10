@@ -46,7 +46,7 @@ class RepoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_repo_list, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val view: View = binding.root
         // Set the adapter
@@ -56,9 +56,10 @@ class RepoFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = RepoRecyclerViewAdapter(viewModel, listener)
+                adapter = RepoRecyclerViewAdapter(viewModel, listener, viewLifecycleOwner)
             }
         }
+        viewModel.fetchRepos()
         return binding.root
     }
 
