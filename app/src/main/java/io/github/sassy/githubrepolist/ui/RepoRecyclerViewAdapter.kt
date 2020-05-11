@@ -16,11 +16,6 @@ import io.github.sassy.githubrepolist.vo.Repo
 
 import kotlinx.android.synthetic.main.fragment_repo.view.*
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
 class RepoRecyclerViewAdapter(
     private val viewModel: RepoViewModel,
     private val mListener: OnListFragmentInteractionListener?,
@@ -56,9 +51,9 @@ class RepoRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        val value = viewModel.repos.value
+        val value = viewModel.reposFullNames.value
         if (value == null) {
-            return 0
+            return 1
         }
         return value.size
     }

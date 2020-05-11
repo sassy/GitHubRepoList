@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_margin="@dimen/text_margin"
-        android:text = "@{viewModel.repos[position].fullName}"
+        android:text = "@{viewModel.reposFullNames[position]}"
         android:textAppearance="?attr/textAppearanceListItem" />
 </LinearLayout>
 </layout>
