@@ -7,14 +7,24 @@
             name="viewModel"
             type="io.github.sassy.githubrepolist.ui.RepoViewModel" />
     </data>
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/list"
-    android:name="io.github.sassy.githubrepolist.ui.RepoFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.RepoFragment"
-    tools:listitem="@layout/fragment_repo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/serchText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:name="io.github.sassy.githubrepolist.ui.RepoFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".ui.RepoFragment"
+            tools:listitem="@layout/fragment_repo" />
+    </LinearLayout>
 </layout>

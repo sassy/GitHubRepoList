@@ -12,15 +12,24 @@ class RepoViewModel(
     private val repository: RepoRepository
 ) : ViewModel() {
     private val repos: MutableLiveData<List<Repo>> = MutableLiveData()
-    val reposFullNames: LiveData<List<String>> = Transformations.map(repos, { list ->
-        list.map { repo ->
+    private var filterText: MutableLiveData<String> = MutableLiveData()
+
+    val reposFullNames: LiveData<List<String>> = Transformations.map(filterText, { text ->
+        repos.value!!.map { repo ->
             repo.fullName
+        }.filter{str ->
+            if (text.isNullOrEmpty()) true else str.contains(text, true)
         }
     })
 
     fun fetchRepos()  {
         repository.fetch().subscribe({ list ->
             repos.postValue(list)
+            filterText.postValue("")
         })
+    }
+
+    fun searchRequest(text: String) {
+        filterText.postValue(text)
     }
 }

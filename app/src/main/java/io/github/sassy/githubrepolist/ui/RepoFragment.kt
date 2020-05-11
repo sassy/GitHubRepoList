@@ -2,6 +2,8 @@ package io.github.sassy.githubrepolist.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.databinding.FragmentRepoListBinding
 
 import io.github.sassy.githubrepolist.repository.RepoRepository
+import kotlinx.android.synthetic.main.fragment_repo_list.view.*
 
 
 /**
@@ -22,7 +26,7 @@ import io.github.sassy.githubrepolist.repository.RepoRepository
  * Activities containing this fragment MUST implement the
  * [RepoFragment.OnListFragmentInteractionListener] interface.
  */
-class RepoFragment : Fragment() {
+class RepoFragment : Fragment(), TextWatcher {
 
     private var columnCount = 1
 
@@ -48,7 +52,7 @@ class RepoFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_repo_list, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val view: View = binding.root
+        val view: View = binding.root.list
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -60,6 +64,10 @@ class RepoFragment : Fragment() {
             }
         }
         viewModel.fetchRepos()
+
+        val edit : EditText = binding.root.findViewById(R.id.serchText)
+        edit.addTextChangedListener(this)
+
         return binding.root
     }
 
@@ -106,5 +114,17 @@ class RepoFragment : Fragment() {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
             }
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        viewModel.searchRequest(s.toString())
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        // do nothing
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        // do nothing
     }
 }
