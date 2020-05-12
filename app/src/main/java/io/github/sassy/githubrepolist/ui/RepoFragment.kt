@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +14,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.databinding.FragmentRepoListBinding
 
-import io.github.sassy.githubrepolist.repository.RepoRepository
 import kotlinx.android.synthetic.main.fragment_repo_list.view.*
+import javax.inject.Inject
+
 
 
 /**
@@ -31,10 +34,14 @@ class RepoFragment : Fragment(), TextWatcher {
     private var columnCount = 1
 
     private lateinit var binding: FragmentRepoListBinding
-    private val repository = RepoRepository()
-    private val viewModel: RepoViewModel by lazy {
-        ViewModelProvider(this, RepoViewModelFactory(repository)).get(RepoViewModel::class.java)
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    val viewModel: RepoViewModel by viewModels {
+        viewModelFactory
     }
+
     private var listener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +79,7 @@ class RepoFragment : Fragment(), TextWatcher {
     }
 
     override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this);
         super.onAttach(context)
         if (context is OnListFragmentInteractionListener) {
             listener = context

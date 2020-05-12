@@ -6,13 +6,12 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import io.github.sassy.githubrepolist.repository.RepoRepository
 import io.github.sassy.githubrepolist.vo.Repo
-import io.github.sassy.githubrepolist.vo.dummpyRepo
+import javax.inject.Inject
 
-class RepoViewModel(
-    private val repository: RepoRepository
-) : ViewModel() {
+class RepoViewModel @Inject constructor(repository: RepoRepository) : ViewModel() {
     private val repos: MutableLiveData<List<Repo>> = MutableLiveData()
     private var filterText: MutableLiveData<String> = MutableLiveData()
+    private val repository = repository
 
     val reposFullNames: LiveData<List<String>> = Transformations.map(filterText, { text ->
         repos.value!!.map { repo ->
