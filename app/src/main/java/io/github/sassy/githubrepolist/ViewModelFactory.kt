@@ -1,4 +1,4 @@
-package io.github.sassy.githubrepolist.ui
+package io.github.sassy.githubrepolist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

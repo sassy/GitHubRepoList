@@ -14,9 +14,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import io.github.sassy.githubrepolist.R
+import io.github.sassy.githubrepolist.ViewModelFactory
 import io.github.sassy.githubrepolist.databinding.FragmentRepoListBinding
 
 import kotlinx.android.synthetic.main.fragment_repo_list.view.*
