@@ -13,11 +13,3 @@ data class Repo(
     @field:SerializedName("stargazers_count")
     val stars: Int
 )
-
-val dummpyRepo = Repo(
-    0,
-    "",
-    "",
-    "",
-    0
-)

@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.databinding.FragmentRepoBinding
 
 
 import io.github.sassy.githubrepolist.ui.RepoFragment.OnListFragmentInteractionListener
-import io.github.sassy.githubrepolist.vo.Repo
 
 import kotlinx.android.synthetic.main.fragment_repo.view.*
 
@@ -31,6 +31,11 @@ class RepoRecyclerViewAdapter(
             // one) that an item has been selected.
             mListener?.onListFragmentInteraction(item)
         }
+
+        // これ必要？ないと更新されないが。
+        viewModel.reposFullNames.observe(parentLifecycleOwner, Observer { list ->
+            notifyDataSetChanged()
+        })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,11 +56,7 @@ class RepoRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        val value = viewModel.reposFullNames.value
-        if (value == null) {
-            return 1
-        }
-        return value.size
+        return viewModel.getCount()
     }
 
     inner class ViewHolder(val binding: FragmentRepoBinding) : RecyclerView.ViewHolder(binding.root) {
