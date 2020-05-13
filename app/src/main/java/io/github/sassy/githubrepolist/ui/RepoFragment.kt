@@ -70,7 +70,6 @@ class RepoFragment : Fragment(), TextWatcher {
                 adapter = RepoRecyclerViewAdapter(viewModel, listener, viewLifecycleOwner)
             }
         }
-        viewModel.fetchRepos()
 
         val edit : EditText = binding.root.findViewById(R.id.serchText)
         edit.addTextChangedListener(this)
