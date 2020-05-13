@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.github.sassy.githubrepolist.ui.RepoViewModel" />
+            type="io.github.sassy.githubrepolist.ui.repo.RepoViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,13 +20,13 @@
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
-            android:name="io.github.sassy.githubrepolist.ui.RepoFragment"
+            android:name="io.github.sassy.githubrepolist.ui.repo.RepoFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".ui.RepoFragment"
+            tools:context=".ui.repo.RepoFragment"
             tools:listitem="@layout/fragment_repo" />
     </LinearLayout>
 </layout>
