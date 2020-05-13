@@ -63,10 +63,6 @@ class RepoRecyclerViewAdapter(
         return viewModel.getCount()
     }
 
-    fun update() {
-        notifyDataSetChanged()
-    }
-
     inner class ViewHolder(val binding: FragmentRepoBinding) : RecyclerView.ViewHolder(binding.root) {
         val mContentView: TextView = binding.root.content
 
