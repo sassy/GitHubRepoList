@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.sassy.githubrepolist.api.ApiService
 import io.github.sassy.githubrepolist.repository.RepoRepository
+import io.github.sassy.githubrepolist.repository.UserRepository
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,4 +26,8 @@ class AppModule {
     @Singleton
     @Provides
     fun providerRepoRepository(apiService: ApiService) = RepoRepository(apiService)
+
+    @Singleton
+    @Provides
+    fun providerUserRepository(apiService: ApiService) = UserRepository(apiService)
 }
