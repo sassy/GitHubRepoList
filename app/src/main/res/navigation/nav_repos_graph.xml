@@ -22,4 +22,10 @@
         android:name="io.github.sassy.githubrepolist.ui.repodetail.RepoDetailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="io.github.sassy.githubrepolist.ui.user.UserFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </navigation>
