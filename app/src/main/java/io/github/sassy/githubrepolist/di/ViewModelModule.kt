@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import io.github.sassy.githubrepolist.ui.RepoViewModel
+import io.github.sassy.githubrepolist.ui.repo.RepoViewModel
 import io.github.sassy.githubrepolist.ViewModelFactory
 
 @Module

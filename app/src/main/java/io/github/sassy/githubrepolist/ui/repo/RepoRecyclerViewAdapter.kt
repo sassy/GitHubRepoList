@@ -1,20 +1,20 @@
-package io.github.sassy.githubrepolist.ui
+package io.github.sassy.githubrepolist.ui.repo
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.databinding.FragmentRepoBinding
 
 
-import io.github.sassy.githubrepolist.ui.RepoFragment.OnListFragmentInteractionListener
-
-import kotlinx.android.synthetic.main.fragment_repo.view.*
+import io.github.sassy.githubrepolist.ui.repo.RepoFragment.OnListFragmentInteractionListener
 
 class RepoRecyclerViewAdapter(
     private val viewModel: RepoViewModel,
@@ -26,10 +26,14 @@ class RepoRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as String
+            val position = v.tag.toString().toInt()
+
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
-            mListener?.onListFragmentInteraction(item)
+            mListener?.onListFragmentInteraction(null)
+
+            val bundle = bundleOf("repositoryName" to viewModel.reposFullNames.value!![position])
+            Navigation.findNavController(v).navigate(R.id.detailFragment, bundle)
         }
 
         // これ必要？ないと更新されないが。
@@ -48,6 +52,7 @@ class RepoRecyclerViewAdapter(
         holder.binding.viewModel = viewModel
         holder.binding.position = position
         holder.binding.lifecycleOwner = parentLifecycleOwner
+        holder.binding.root.tag = position
 
         val view = holder.binding.root
         with(view) {
@@ -60,7 +65,7 @@ class RepoRecyclerViewAdapter(
     }
 
     inner class ViewHolder(val binding: FragmentRepoBinding) : RecyclerView.ViewHolder(binding.root) {
-        val mContentView: TextView = binding.root.content
+        val mContentView: TextView = binding.root.rootView.findViewById(R.id.content)
 
         override fun toString(): String {
             return super.toString() + " '" + mContentView.text + "'"

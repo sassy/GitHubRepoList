@@ -1,4 +1,4 @@
-package io.github.sassy.githubrepolist.ui
+package io.github.sassy.githubrepolist.ui.repo
 
 import android.content.Context
 import android.os.Bundle
@@ -18,8 +18,8 @@ import dagger.android.support.AndroidSupportInjection
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.ViewModelFactory
 import io.github.sassy.githubrepolist.databinding.FragmentRepoListBinding
-
 import kotlinx.android.synthetic.main.fragment_repo_list.view.*
+
 import javax.inject.Inject
 
 
@@ -59,7 +59,7 @@ class RepoFragment : Fragment(), TextWatcher {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_repo_list, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val view: View = binding.root.list
+        val view: View = binding.root.rootView.list
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -67,7 +67,12 @@ class RepoFragment : Fragment(), TextWatcher {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = RepoRecyclerViewAdapter(viewModel, listener, viewLifecycleOwner)
+                adapter =
+                    RepoRecyclerViewAdapter(
+                        viewModel,
+                        listener,
+                        viewLifecycleOwner
+                    )
             }
         }
 

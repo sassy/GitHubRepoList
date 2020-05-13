@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.github.sassy.githubrepolist.ui.RepoViewModel" />
+            type="io.github.sassy.githubrepolist.ui.repo.RepoViewModel" />
         <variable
             name="position"
             type="Integer" />

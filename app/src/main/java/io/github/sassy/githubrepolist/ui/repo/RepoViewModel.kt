@@ -1,4 +1,4 @@
-package io.github.sassy.githubrepolist.ui
+package io.github.sassy.githubrepolist.ui.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
