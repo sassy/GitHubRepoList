@@ -9,7 +9,7 @@ import io.github.sassy.githubrepolist.vo.Repo
 import javax.inject.Inject
 
 class RepoViewModel @Inject constructor(private val repository: RepoRepository) : ViewModel() {
-    private var repos: MutableLiveData<List<Repo>> = MutableLiveData()
+    private val repos: MutableLiveData<List<Repo>> = MutableLiveData()
     private var filterText: MutableLiveData<String> = MutableLiveData()
     val reposFullNames: LiveData<List<String>> = Transformations.map(filterText, { text ->
         repos.value!!.map { repo ->
