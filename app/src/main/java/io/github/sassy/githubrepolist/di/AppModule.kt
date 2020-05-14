@@ -3,6 +3,7 @@ package io.github.sassy.githubrepolist.di
 import dagger.Module
 import dagger.Provides
 import io.github.sassy.githubrepolist.api.ApiService
+import io.github.sassy.githubrepolist.repository.LoginRepository
 import io.github.sassy.githubrepolist.repository.RepoRepository
 import io.github.sassy.githubrepolist.repository.UserRepository
 import retrofit2.Retrofit
@@ -30,4 +31,8 @@ class AppModule {
     @Singleton
     @Provides
     fun providerUserRepository(apiService: ApiService) = UserRepository(apiService)
+
+    @Singleton
+    @Provides
+    fun providerLoginRepository() = LoginRepository()
 }

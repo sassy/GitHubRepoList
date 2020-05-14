@@ -16,6 +16,7 @@ import dagger.android.support.AndroidSupportInjection
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.ViewModelFactory
 import io.github.sassy.githubrepolist.databinding.UserFragmentBinding
+import io.github.sassy.githubrepolist.ui.login.LoginViewModel
 import javax.inject.Inject
 
 class UserFragment : Fragment() {
@@ -39,6 +40,8 @@ class UserFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.user_fragment, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.fetchUser()
 
         return binding.root
     }

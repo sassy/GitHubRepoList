@@ -14,10 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import dagger.android.support.AndroidSupportInjection
 import io.github.sassy.githubrepolist.R
 import io.github.sassy.githubrepolist.ViewModelFactory
 import io.github.sassy.githubrepolist.databinding.FragmentRepoListBinding
+import io.github.sassy.githubrepolist.ui.login.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_repo_list.view.*
 
 import javax.inject.Inject
@@ -37,7 +39,6 @@ class RepoFragment : Fragment(), TextWatcher {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     val viewModel: RepoViewModel by viewModels {
         viewModelFactory
     }
@@ -78,6 +79,8 @@ class RepoFragment : Fragment(), TextWatcher {
 
         val edit : EditText = binding.root.findViewById(R.id.serchText)
         edit.addTextChangedListener(this)
+
+        viewModel.fetchRepos()
 
         return binding.root
     }

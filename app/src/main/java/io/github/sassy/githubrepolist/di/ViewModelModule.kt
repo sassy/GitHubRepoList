@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import io.github.sassy.githubrepolist.ui.repo.RepoViewModel
 import io.github.sassy.githubrepolist.ViewModelFactory
+import io.github.sassy.githubrepolist.ui.login.LoginViewModel
 import io.github.sassy.githubrepolist.ui.user.UserViewModel
 
 @Module
@@ -20,6 +21,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UserViewModel::class)
     abstract fun bindUserViewModel(userViewModel: UserViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
