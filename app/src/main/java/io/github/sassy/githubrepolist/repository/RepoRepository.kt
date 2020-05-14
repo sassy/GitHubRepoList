@@ -14,8 +14,8 @@ class RepoRepository @Inject constructor(
 ) {
     private var repos: List<Repo>? = null
 
-    fun fetch() : Observable<List<Repo>> {
-        return apiService.getRepos()
+    fun fetch(login: String) : Observable<List<Repo>> {
+        return apiService.getRepos(login)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.newThread())
     }

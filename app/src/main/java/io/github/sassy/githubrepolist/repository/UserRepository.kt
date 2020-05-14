@@ -12,8 +12,8 @@ import javax.inject.Singleton
 class UserRepository @Inject constructor(
     private val apiService: ApiService
 ){
-    fun fetch(): Observable<User> {
-        return apiService.getUser()
+    fun fetch(login: String): Observable<User> {
+        return apiService.getUser(login)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.newThread())
     }
