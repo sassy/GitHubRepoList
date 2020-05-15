@@ -20,7 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars"
-        app:layout_constraintHorizontal_bias="0.2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         />
 
     <TextView
@@ -31,18 +32,21 @@
         android:textSize="32sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        tools:text="sassy"
          />
-
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{viewModel.user.name}"
-        android:textSize="28sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        tools:text="Satoshi Watanabe"
          />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
