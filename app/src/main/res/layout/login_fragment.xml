@@ -8,33 +8,33 @@
 
     <TextView
         android:id="@+id/login_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="32sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/login_edittext"
+        app:layout_constraintBottom_toTopOf="@id/login_edittext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         />
     <EditText
         android:id="@+id/login_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/login_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/login_button"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@id/login_text"
+        app:layout_constraintBottom_toTopOf="@id/login_button"
+        app:layout_constraintTop_toBottomOf="@id/login_text"
+        android:imeOptions="actionDone"
         />
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Login"
-        app:layout_constraintTop_toTopOf="@id/login_edittext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/login_text"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_edittext"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

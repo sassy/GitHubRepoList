@@ -34,5 +34,5 @@ class RepoViewModel @Inject constructor(
         filterText.postValue(text)
     }
 
-    fun getCount() = if (reposFullNames.value == null) 1 else reposFullNames.value!!.size
+    fun getCount() = if (reposFullNames.value == null) 0 else reposFullNames.value!!.size
 }
